@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * This is Site information module.
+ */
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * 
+ * Implements hook_form_alter().
+ * 
+ * @param array $form
+ * @param FormStateInterface $form_state
+ * @param type $form_id
+ */
+function site_info_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'system_site_information_settings':
+      $form['api'] = [
+        '#type' => 'details',
+        '#title' => t('API details'),
+        '#open' => TRUE,
+      ];
+      $siteapikey = \Drupal::config('system.site')->get('siteapikey');
+      if (!empty($siteapikey)) { 
+      //Change the text of button once the save action takes place
+        $form['actions']['submit']['#value'] = 'Update Configuration';
+      }
+      else {
+        $siteapikey = 'No API Key yet';
+      }
+      $form['api']['siteapikey'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Site API Key'),
+        '#default_value' => $siteapikey,
+      );
+      $form['#submit'][] = 'siteapikey_submit';
+      break;
+  }
+}
+
+/**
+ * 
+ * @param array $form
+ * @param FormStateInterface $form_state
+ */
+function siteapikey_submit(array &$form, FormStateInterface $form_state) {
+  $siteapikey = $form_state->getValue('siteapikey');
+  \Drupal::configFactory()->getEditable('system.site')->
+      set('siteapikey', $siteapikey)
+      ->save();
+  drupal_set_message('the Site API Key has been saved with "' . $siteapikey . '" value.');
+}

@@ -1,0 +1,8 @@
+name: Site Information 
+description: Alters Drupal's "Site Information" form
+package: Custom
+type: module
+core: 8.x
+
+dependencies:
+  - node:node
