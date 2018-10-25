@@ -9,5 +9,4 @@
 - 2 hours 10 min.
 
 ### Note: 
-It will redirect to Page not found, if node id does not exist. We can achieve that,
-but that would not be a proper way.
+It will redirect to Page not found, if node id does not exist.
