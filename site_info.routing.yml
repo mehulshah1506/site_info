@@ -4,7 +4,7 @@ site_info.page_json:
     _controller: '\Drupal\site_info\Controller\SiteInfoController::pageJson'
   methods:  [GET]
   requirements:
-    _permission: 'access content'
+    _custom_access: '\Drupal\site_info\Controller\SiteInfoController::access'
   options:
     parameters:
       node:
