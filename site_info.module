@@ -24,7 +24,7 @@ function site_info_form_alter(array &$form, FormStateInterface $form_state, $for
       ];
       $siteapikey = \Drupal::config('system.site')->get('siteapikey');
       if (!empty($siteapikey)) { 
-      //Change the text of button once the save action takes place
+        //Change the text of button once the save action takes place
         $form['actions']['submit']['#value'] = 'Update Configuration';
       }
       else {

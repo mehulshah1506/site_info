@@ -1,4 +1,4 @@
-name: Site Information 
+name: Site Information & Node API
 description: Alters Drupal's "Site Information" form
 package: Custom
 type: module
